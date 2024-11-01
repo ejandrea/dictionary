@@ -27,6 +27,13 @@ const config: Config = {
       inter: 'var(--font-inter)',
       lora: 'var(--font-lora)',
       inconsolata: 'var(--font-inconsolata)'
+    },
+    fontSize: {
+      "body-sm": ["14px", "17px"],
+      "body-md": ["18px", "24px"],
+      "heading-sm": ["20px", "24px"],
+      "heading-md": ["24px", "29px"],
+      "heading-lg": ["64px", "77px"]
     }
   },
   plugins: [],
