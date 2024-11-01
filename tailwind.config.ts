@@ -7,12 +7,27 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+    colors: {
+      black: {
+        100: '#3A3A3A',
+        200: '#2D2D2D',
+        300: '#1F1F1F',
+        400: '#050505'
       },
+      gray: {
+        100: '#F4F4F4',
+        200: '#E9E9E9',
+        300: '#757575'
+      },
+      white: '#FFFFFF',
+      accent: '#A445ED',
+      error: '#FF5252'
     },
+    fontFamily: {
+      inter: 'var(--font-inter)',
+      lora: 'var(--font-lora)',
+      inconsolata: 'var(--font-inconsolata)'
+    }
   },
   plugins: [],
 };
