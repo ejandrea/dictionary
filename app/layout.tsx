@@ -1,7 +1,7 @@
-import FontProvider from "@/context/FontProvider";
 import type { Metadata } from "next";
 import { Inconsolata, Inter, Lora } from "next/font/google";
 import "./globals.css";
+import ThemeProvider from "@/context/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,7 +39,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${lora.variable} ${inconsolata.variable}`}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

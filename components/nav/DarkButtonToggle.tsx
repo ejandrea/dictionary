@@ -1,29 +1,27 @@
 "use client";
 
-import useThemeStore, { ThemeState } from "@/store/useThemeStore";
+import { useTheme } from "next-themes";
 import { PiToggleLeftLight, PiMoon, PiToggleRightFill } from "react-icons/pi";
 
 const DarkButtonToggle = () => {
-  const { mode, changeMode } = useThemeStore();
-
-  const handleThemeToggle = () => {
-    const toggleModeTo = mode === "light" ? "dark" : "light";
-    changeMode!(toggleModeTo);
-  };
+  const { theme, setTheme } = useTheme();
 
   return (
     <button
       className={`flex gap-5 items-center hover:text-accent transition-colors`}
-      onClick={handleThemeToggle}
+      onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
     >
-      <ThemeMode mode={mode} />
-      <PiMoon size={25} className={`${mode === "dark" ? "text-accent" : ""}`} />
+      <ThemeMode theme={theme} />
+      <PiMoon
+        size={25}
+        className={`${theme === "dark" ? "text-accent" : ""}`}
+      />
     </button>
   );
 };
 
-const ThemeMode = ({ mode }: ThemeState) => {
-  return mode === "light" ? (
+const ThemeMode = ({ theme }: { theme: string | undefined }) => {
+  return theme === "light" ? (
     <PiToggleLeftLight size={40} />
   ) : (
     <PiToggleRightFill size={40} className="text-accent" />
