@@ -47,7 +47,7 @@ const FontListDropDown = ({
     <ul
       className={`${
         isOpen ? "inline" : "hidden"
-      } absolute mt-4 right-1 rounded-2xl p-6 drop-shadow-default dark:drop-shadow-dark bg-white dark:bg-black-300 w-[183px] h-[152px]`}
+      } absolute mt-4 right-1 rounded-2xl p-6 drop-shadow-default dark:drop-shadow-dark bg-white dark:bg-black-300 w-[183px] h-[152px] z-10`}
       role="listbox"
     >
       {fonts.map((fontOption) => (
