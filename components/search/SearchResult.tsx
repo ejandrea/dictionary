@@ -11,8 +11,12 @@ type SearchResultsProps = {
 
 const SearchResult = ({ word, error }: SearchResultsProps) => {
   const handlePlayAudio = () => {
-    const audio = new Audio(word[0].phonetics[0].audio);
-    audio.play();
+    const source = word[0].phonetics[0].audio;
+    if (source !== "") {
+      const audio = new Audio(word[0].phonetics[0].audio);
+      audio.play();
+    }
+    return null;
   };
 
   return word.length === 0 ? (
@@ -29,14 +33,12 @@ const SearchResult = ({ word, error }: SearchResultsProps) => {
           </p>
         </div>
 
-        {word[0].phonetics[0].audio && (
-          <button
-            className="size-12 md:size-16 hover:bg-accent bg-accent/25 rounded-full flex justify-center items-center"
-            onClick={handlePlayAudio}
-          >
-            <AiFillCaretRight className="text-accent hover:text-white size-5 md:size-8" />
-          </button>
-        )}
+        <button
+          className="size-12 md:size-16 hover:bg-accent bg-accent/25 rounded-full flex justify-center items-center"
+          onClick={handlePlayAudio}
+        >
+          <AiFillCaretRight className="text-accent hover:text-white size-5 md:size-8" />
+        </button>
       </div>
     </section>
   );
