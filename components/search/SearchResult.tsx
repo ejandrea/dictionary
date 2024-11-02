@@ -1,7 +1,8 @@
+import Null from "@/public/images/null.png";
 import { StateError } from "@/types/Error";
 import { Word } from "@/types/Word";
-import Null from "@/public/images/null.png";
 import Image from "next/image";
+import { AiFillCaretRight } from "react-icons/ai";
 
 type SearchResultsProps = {
   word: Word[] | [];
@@ -9,9 +10,36 @@ type SearchResultsProps = {
 };
 
 const SearchResult = ({ word, error }: SearchResultsProps) => {
-  console.log(word, "WORD THAT IS PASSED INTO THE RESULTS");
+  const handlePlayAudio = () => {
+    const audio = new Audio(word[0].phonetics[0].audio);
+    audio.play();
+  };
 
-  return word.length === 0 ? <NoResponse error={error} /> : <p>result here</p>;
+  return word.length === 0 ? (
+    <NoResponse error={error} />
+  ) : (
+    <section className="mt-6">
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-heading-md md:text-heading-lg font-bold mb-2">
+            {word[0].word}
+          </h1>
+          <p className="text-body-md md:text-heading-md text-accent">
+            {word[0].phonetics[0].text || word[0].phonetics[1].text}
+          </p>
+        </div>
+
+        {word[0].phonetics[0].audio && (
+          <button
+            className="size-12 md:size-16 hover:bg-accent bg-accent/25 rounded-full flex justify-center items-center"
+            onClick={handlePlayAudio}
+          >
+            <AiFillCaretRight className="text-accent hover:text-white size-5 md:size-8" />
+          </button>
+        )}
+      </div>
+    </section>
+  );
 };
 
 type NoResponseProps = {
