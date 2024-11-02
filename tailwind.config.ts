@@ -36,7 +36,8 @@ const config: Config = {
       "heading-lg": ["64px", "77px"]
     },
     dropShadow: {
-      'default': '0 5px 30px rgba(0, 0, 0, 0.10)'
+      'default': '0 5px 30px rgba(0, 0, 0, 0.10)',
+      'dark': '0 5px 10px rgba(164,69,237)',
     }
   },
   plugins: [],
