@@ -1,23 +1,27 @@
+import FontProvider from "@/context/FontProvider";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inconsolata, Inter, Lora } from "next/font/google";
 import "./globals.css";
 
-const interSans = localFont({
-  src: "./fonts/Inter.woff",
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "700"],
   variable: "--font-inter",
-  weight: "400, 700",
+  display: "swap",
 });
 
-const loraSerif = localFont({
-  src: "./fonts/Lora.woff",
+const lora = Lora({
+  subsets: ["latin"],
+  weight: ["400", "700"],
   variable: "--font-lora",
-  weight: "400, 700",
+  display: "swap",
 });
 
-const inconsolataMono = localFont({
-  src: "./fonts/Inconsolata.woff",
+const inconsolata = Inconsolata({
+  subsets: ["latin"],
   variable: "--font-inconsolata",
-  weight: "400, 700",
+  weight: ["400", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -33,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${interSans.variable} ${loraSerif.variable} ${inconsolataMono.variable} antialiased`}
+        className={`${inter.variable} ${lora.variable} ${inconsolata.variable}`}
       >
         {children}
       </body>
