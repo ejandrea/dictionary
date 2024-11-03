@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import { PiToggleLeftLight, PiMoon, PiToggleRightFill } from "react-icons/pi";
 
-const DarkButtonToggle = () => {
+const DarkModeToggle = () => {
   const { theme, setTheme } = useTheme();
 
   return (
@@ -29,4 +29,4 @@ const ThemeMode = ({ theme }: { theme: string | undefined }) => {
   );
 };
 
-export default DarkButtonToggle;
+export default DarkModeToggle;
