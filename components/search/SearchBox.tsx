@@ -16,7 +16,7 @@ const SearchBox = () => {
           aria-describedby={
             error?.type === "emptySearch" ? "error-message" : undefined
           }
-          className={`w-full dark:bg-black-300 h-16 rounded-2xl py-5 pr-12 pl-6 md:text-heading-sm font-bold outline-none focus:dark:ring-1 focus:dark:ring-accent caret-accent bg-gray-100 text-body-sm text-black-200"
+          className={`w-full dark:bg-black-300 h-16 rounded-2xl py-5 pr-12 pl-6 md:text-heading-sm font-bold outline-none focus:dark:ring-1 focus:ring-accent caret-accent bg-gray-100 text-body-sm text-black-200"
           placeholder="Search for any word… ${
             error.type === "emptySearch" && "ring-1 ring-error"
           }`}
