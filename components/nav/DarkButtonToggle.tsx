@@ -9,6 +9,7 @@ const DarkButtonToggle = () => {
   return (
     <button
       className={`flex gap-5 items-center hover:text-accent transition-colors`}
+      aria-label="Dark Mode Toggle Button"
       onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
     >
       <ThemeMode theme={theme} />
