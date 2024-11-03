@@ -22,7 +22,12 @@ const FontSelector = () => {
         aria-label="Font Selector Dropdown Button"
       >
         <p className="font-bold text-body-sm md:text-body-md">{font.type}</p>
-        <RiArrowDownSLine width={12} height={6} className="text-accent" />
+        <RiArrowDownSLine
+          width={12}
+          height={6}
+          className="text-accent"
+          role="img"
+        />
       </button>
 
       <FontListDropDown
