@@ -1,50 +1,15 @@
 import Null from "@/public/images/null.png";
-import { StateError } from "@/types/StateError";
-import { Word } from "@/types/Word";
+import { SearchResult as SearchResultProps } from "@/types/SearchResult";
 import Image from "next/image";
-import { AiFillCaretRight } from "react-icons/ai";
 import LineBreak from "../LineBreak";
+import SearchResultHead from "./parts/head/SearchResultHead";
 
-type SearchResultsProps = {
-  word: Word[] | [];
-  error: StateError;
-};
-
-const SearchResult = ({ word, error }: SearchResultsProps) => {
-  console.log(word, "word");
-  const handlePlayAudio = () => {
-    if (word.length !== 0) {
-      const source = word[0].phonetics[0]?.audio;
-      if (source !== "") {
-        const audio = new Audio(word[0].phonetics[0]?.audio);
-        audio.play();
-      }
-      return null;
-    }
-  };
-
+const SearchResult = ({ word, error }: SearchResultProps) => {
   return word.length === 0 ? (
     <NoResponse error={error} />
   ) : (
     <section className="mt-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-heading-md md:text-heading-lg font-bold mb-2">
-            {word[0].word}
-          </h1>
-          <p className="text-body-md md:text-heading-md text-accent">
-            {word[0]?.phonetics[0]?.text || word[0]?.phonetics[1]?.text}
-          </p>
-        </div>
-
-        <button
-          className="size-12 md:size-16 hover:bg-accent bg-accent/25 rounded-full flex justify-center items-center"
-          onClick={handlePlayAudio}
-        >
-          <AiFillCaretRight className="text-accent hover:text-white size-5 md:size-8" />
-        </button>
-      </div>
-
+      <SearchResultHead word={word} />
       <div className="space-y-8 mt-8">
         {word[0].meanings.map((meaning, index) => (
           <div key={index}>
@@ -91,12 +56,7 @@ const SearchResult = ({ word, error }: SearchResultsProps) => {
   );
 };
 
-type NoResponseProps = {
-  error: SearchResultsProps["error"];
-};
-
-const NoResponse = ({ error }: NoResponseProps) => {
-  console.log(error);
+const NoResponse = ({ error }: { error: SearchResultProps["error"] }) => {
   if (error.type === "noResponse")
     return (
       <section className="w-full flex flex-col items-center justify-center gap-11">
