@@ -84,7 +84,10 @@ const FontListDropDownOption = ({
   onSelect,
 }: FontListDropDownOptionProps) => {
   return (
-    <li className="text-body-md font-bold [&:not(:first-child)]:mt-4">
+    <li
+      className="text-body-md font-bold [&:not(:first-child)]:mt-4"
+      role="listitem"
+    >
       <button
         onClick={onSelect}
         className={`font-${font.value} hover:text-accent transition-colors`}
