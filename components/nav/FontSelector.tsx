@@ -1,8 +1,8 @@
 "use client";
 
 import { fonts } from "@/constants/fonts";
-import { ArrowDown } from "@/public/images/index";
 import { Font } from "@/types/Font";
+import { RiArrowDownSLine } from "react-icons/ri";
 import useFontStore from "@/store/useFontStore";
 import { useState } from "react";
 
@@ -19,9 +19,10 @@ const FontSelector = () => {
         onClick={toggleDropDown}
         aria-haspopup="listbox"
         aria-expanded={isDropDownOpen}
+        aria-label="Font Selector Dropdown Button"
       >
         <p className="font-bold text-body-sm md:text-body-md">{font.type}</p>
-        <ArrowDown width={12} height={6} />
+        <RiArrowDownSLine width={12} height={6} className="text-accent" />
       </button>
 
       <FontListDropDown
@@ -36,6 +37,8 @@ type FontListDropDownProps = {
   isOpen: boolean;
   toggleDropDown: () => void;
 };
+
+// popup
 
 const FontListDropDown = ({
   isOpen,
@@ -68,6 +71,8 @@ type FontListDropDownOptionProps = {
   font: Font;
   onSelect: () => void;
 };
+
+// fonts
 
 const FontListDropDownOption = ({
   font,
