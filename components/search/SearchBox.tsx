@@ -3,14 +3,17 @@
 import { CiSearch } from "react-icons/ci";
 import SearchResult from "./SearchResult";
 import useSearch from "@/hooks/useSearch";
+import { useRef } from "react";
 
 const SearchBox = () => {
   const { error, handleSearch, word } = useSearch();
+  const inputElement = useRef<HTMLInputElement>(null);
 
   return (
     <div>
       <div className="relative mt-12">
         <input
+          ref={inputElement}
           aria-label="Search box input: Search for any word"
           aria-invalid={error?.type === "emptySearch"}
           aria-describedby={
@@ -29,6 +32,8 @@ const SearchBox = () => {
         <CiSearch
           className="absolute right-5 top-1/2 transform -translate-y-1/2 text-accent"
           size={20}
+          role="button"
+          onClick={() => handleSearch(inputElement?.current?.value || "")}
         />
       </div>
       {error.type === "emptySearch" && (
