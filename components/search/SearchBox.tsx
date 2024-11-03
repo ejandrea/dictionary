@@ -32,7 +32,10 @@ const SearchBox = () => {
       }
     } catch (error) {
       const responseError = error as AxiosError;
-      if (responseError.status === 404) setWord([]);
+      if (responseError.status === 404) {
+        setWord([]);
+        setError({ type: "noResponse" });
+      }
       return;
     }
   };

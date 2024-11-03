@@ -8,6 +8,11 @@ type Meaning = {
   example: string;
   synonyms?: string[];
   antonyms?: string[];
+  definitions?: {
+    definition: string;
+    example: string;
+    synonyms: string[];
+  }[];
 };
 
 export type Word = {

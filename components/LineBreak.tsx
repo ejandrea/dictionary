@@ -1,12 +1,15 @@
 type Props = {
-  width: number;
+  width?: number;
   height: number;
 };
 
 const LineBreak = ({ width, height }: Props) => (
   <div
-    style={{ width: `${width}px` }}
-    className={`h-[${height}px] bg-gray-200`}
+    style={{
+      height: `${height}px`,
+      width: width ? `${width}px` : "100%",
+    }}
+    className="bg-gray-200"
   />
 );
 

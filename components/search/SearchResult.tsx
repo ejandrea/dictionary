@@ -3,6 +3,7 @@ import { StateError } from "@/types/Error";
 import { Word } from "@/types/Word";
 import Image from "next/image";
 import { AiFillCaretRight } from "react-icons/ai";
+import LineBreak from "../LineBreak";
 
 type SearchResultsProps = {
   word: Word[] | [];
@@ -10,13 +11,16 @@ type SearchResultsProps = {
 };
 
 const SearchResult = ({ word, error }: SearchResultsProps) => {
+  console.log(word, "word");
   const handlePlayAudio = () => {
-    const source = word[0].phonetics[0].audio;
-    if (source !== "") {
-      const audio = new Audio(word[0].phonetics[0].audio);
-      audio.play();
+    if (word.length !== 0) {
+      const source = word[0].phonetics[0]?.audio;
+      if (source !== "") {
+        const audio = new Audio(word[0].phonetics[0]?.audio);
+        audio.play();
+      }
+      return null;
     }
-    return null;
   };
 
   return word.length === 0 ? (
@@ -29,7 +33,7 @@ const SearchResult = ({ word, error }: SearchResultsProps) => {
             {word[0].word}
           </h1>
           <p className="text-body-md md:text-heading-md text-accent">
-            {word[0].phonetics[0].text || word[0].phonetics[1].text}
+            {word[0]?.phonetics[0]?.text || word[0]?.phonetics[1]?.text}
           </p>
         </div>
 
@@ -40,6 +44,49 @@ const SearchResult = ({ word, error }: SearchResultsProps) => {
           <AiFillCaretRight className="text-accent hover:text-white size-5 md:size-8" />
         </button>
       </div>
+
+      <div className="space-y-8 mt-8">
+        {word[0].meanings.map((meaning, index) => (
+          <div key={index}>
+            <div className="flex flex-col space-y-8">
+              <div className="flex gap-4 items-center">
+                <h2 className="font-bold italic text-body-md md:text-heading-md">
+                  {meaning.partOfSpeech}
+                </h2>
+                <LineBreak height={1} />
+              </div>
+
+              <p className="text-gray-300 text-body-sm md:text-heading-sm">
+                Meaning
+              </p>
+
+              <ul className="list-disc pl-6 space-y-3 marker:text-accent">
+                {meaning.definitions!.map((definition, index) => (
+                  <li key={index} className="text-body-sm md:text-body-md">
+                    <span>{definition.definition}</span>
+                    <span className="block mt-3 text-gray-300">
+                      {definition.example}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <p>
+                Synonyms{" "}
+                {meaning.definitions!.map((d, index) => {
+                  if (d.synonyms.length !== 0)
+                    return (
+                      <span key={index} className="font-bold text-accent">
+                        {" "}
+                        {d.synonyms}{" "}
+                      </span>
+                    );
+                })}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 };
@@ -49,6 +96,7 @@ type NoResponseProps = {
 };
 
 const NoResponse = ({ error }: NoResponseProps) => {
+  console.log(error);
   if (error.type === "noResponse")
     return (
       <section className="w-full flex flex-col items-center justify-center gap-11">
