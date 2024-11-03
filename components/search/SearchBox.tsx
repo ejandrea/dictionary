@@ -1,49 +1,21 @@
 "use client";
 
-import getSearchResults from "@/services/getSearchResults";
-import { Word } from "@/types/Word";
-import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import SearchResult from "./SearchResult";
-import { StateError } from "@/types/Error";
-import { AxiosError } from "axios";
+import useSearch from "@/hooks/useSearch";
 
 const SearchBox = () => {
-  const [error, setError] = useState<StateError>({
-    type: "",
-  });
-  const [word, setWord] = useState<Word[]>([]);
-
-  const handleSearch = async (value: string) => {
-    try {
-      const searchValue = value.trim();
-
-      if (searchValue.length !== 0) {
-        await getSearchResults(searchValue).then((result) =>
-          setWord(result.data)
-        );
-
-        if (word.length === 0) setError({ type: "noResponse" });
-        else setError({ type: "" });
-      } else {
-        setError({
-          type: "emptySearch",
-        });
-      }
-    } catch (error) {
-      const responseError = error as AxiosError;
-      if (responseError.status === 404) {
-        setWord([]);
-        setError({ type: "noResponse" });
-      }
-      return;
-    }
-  };
+  const { error, handleSearch, word } = useSearch();
 
   return (
     <div>
       <div className="relative mt-12">
         <input
+          aria-label="Search box input: Search for any word"
+          aria-invalid={error?.type === "emptySearch"}
+          aria-describedby={
+            error?.type === "emptySearch" ? "error-message" : undefined
+          }
           className={`w-full dark:bg-black-300 h-16 rounded-2xl py-5 pr-12 pl-6 md:text-heading-sm font-bold outline-none focus:dark:ring-1 focus:dark:ring-accent caret-accent bg-gray-100 text-body-sm text-black-200"
           placeholder="Search for any word… ${
             error.type === "emptySearch" && "ring-1 ring-error"
@@ -60,7 +32,13 @@ const SearchBox = () => {
         />
       </div>
       {error.type === "emptySearch" && (
-        <p className="text-body-sm mt-2 text-error">Whoops, can’t be empty…</p>
+        <p
+          id="error-message"
+          aria-label="Error message for an empty search value"
+          className="text-body-sm mt-2 text-error"
+        >
+          Whoops, can’t be empty…
+        </p>
       )}
 
       <SearchResult word={word} error={error} />
