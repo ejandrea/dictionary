@@ -1,3 +1,3 @@
 export type StateError = {
-    type: 'emptySearch' | 'noResponse' | ''
+    type: 'emptySearch' | 'noResponse' | ""
 }
