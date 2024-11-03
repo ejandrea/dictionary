@@ -17,6 +17,12 @@ describe("Navbar", () => {
     expect(fontSelectorButton).toBeInTheDocument();
   });
 
+  it("renders the vertical line break", async () => {
+    render(<Navbar />);
+    const verticalLineBreak = await screen.getByRole("separator");
+    expect(verticalLineBreak).toBeInTheDocument();
+  });
+
   it("renders the toggle dark mode button", async () => {
     render(<Navbar />);
     const darkModeToggleButton = await screen.getByLabelText(

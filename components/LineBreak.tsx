@@ -4,11 +4,12 @@ type Props = {
 };
 
 const LineBreak = ({ width, height }: Props) => (
-  <div
+  <hr
     style={{
       height: `${height}px`,
       width: width ? `${width}px` : "100%",
     }}
+    role="separator"
     className="bg-gray-200"
   />
 );
