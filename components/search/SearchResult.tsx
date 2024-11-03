@@ -1,8 +1,6 @@
-import Null from "@/public/images/null.png";
 import { SearchResult as SearchResultProps } from "@/types/SearchResult";
-import Image from "next/image";
-import LineBreak from "../LineBreak";
-import SearchResultHead from "./parts/head/SearchResultHead";
+import NoResponse from "./NoResponse";
+import { SearchResultBody, SearchResultHead } from "./parts";
 
 const SearchResult = ({ word, error }: SearchResultProps) => {
   return word.length === 0 ? (
@@ -10,74 +8,9 @@ const SearchResult = ({ word, error }: SearchResultProps) => {
   ) : (
     <section className="mt-6">
       <SearchResultHead word={word} />
-      <div className="space-y-8 mt-8">
-        {word[0].meanings.map((meaning, index) => (
-          <div key={index}>
-            <div className="flex flex-col space-y-8">
-              <div className="flex gap-4 items-center">
-                <h2 className="font-bold italic text-body-md md:text-heading-md">
-                  {meaning.partOfSpeech}
-                </h2>
-                <LineBreak height={1} />
-              </div>
-
-              <p className="text-gray-300 text-body-sm md:text-heading-sm">
-                Meaning
-              </p>
-
-              <ul className="list-disc pl-6 space-y-3 marker:text-accent">
-                {meaning.definitions!.map((definition, index) => (
-                  <li key={index} className="text-body-sm md:text-body-md">
-                    <span>{definition.definition}</span>
-                    <span className="block mt-3 text-gray-300">
-                      {definition.example}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              <p>
-                Synonyms{" "}
-                {meaning.definitions!.map((d, index) => {
-                  if (d.synonyms.length !== 0)
-                    return (
-                      <span key={index} className="font-bold text-accent">
-                        {" "}
-                        {d.synonyms}{" "}
-                      </span>
-                    );
-                })}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <SearchResultBody word={word} />
     </section>
   );
-};
-
-const NoResponse = ({ error }: { error: SearchResultProps["error"] }) => {
-  if (error.type === "noResponse")
-    return (
-      <section className="w-full flex flex-col items-center justify-center gap-11">
-        <Image
-          src={Null}
-          sizes="40"
-          className="mt-32"
-          alt="Disappointed Emoji: no response from the server"
-        />
-        <div className="space-y-6">
-          <p className="text-heading-sm font-bold text-center">
-            No definitions found
-          </p>
-          <p className="text-body-md text-gray-300 text-center">
-            Sorry pal, we couldn&#39;t find definitions for the word you were
-            looking for. You can try the search again at later time or head to
-            the web instead.
-          </p>
-        </div>
-      </section>
-    );
 };
 
 export default SearchResult;
