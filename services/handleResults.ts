@@ -1,10 +1,11 @@
 import { SearchResult } from "@/types/SearchResult";
 
 const handlePlayAudio = (word: SearchResult["word"]) => {
-    if (word.length !== 0) {
-      const source = word[0].phonetics[0]?.audio;
-      if (source !== "") {
-        const audio = new Audio(word[0].phonetics[0]?.audio);
+  if (word.length > 0) {
+      const audioSource = word[0].phonetics.find(phonetic => phonetic.audio)?.audio;
+
+      if (audioSource) {
+        const audio = new Audio(audioSource);
         audio.play();
       }
       return null;
