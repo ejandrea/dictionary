@@ -1,5 +1,5 @@
 import getSearchResults from "@/services/getSearchResults";
-import { StateError } from "@/types/Error";
+import { StateError } from "@/types/StateError";
 import { Word } from "@/types/Word";
 import { AxiosError } from "axios";
 import { useState } from "react";

@@ -1,5 +1,5 @@
 import Null from "@/public/images/null.png";
-import { StateError } from "@/types/Error";
+import { StateError } from "@/types/StateError";
 import { Word } from "@/types/Word";
 import Image from "next/image";
 import { AiFillCaretRight } from "react-icons/ai";
