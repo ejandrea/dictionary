@@ -13,6 +13,7 @@ const SearchResultHead = ({ word }: { word: SearchResult["word"] }) => {
     >
       <div>
         <h1
+          aria-label="Heading of the searched word"
           id="search-result-heading"
           aria-live="polite"
           className="text-heading-md md:text-heading-lg font-bold mb-2"

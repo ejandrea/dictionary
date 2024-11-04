@@ -5,6 +5,7 @@ const handlePlayAudio = (word: SearchResult["word"]) => {
       const audioSource = word[0].phonetics.find(phonetic => phonetic.audio)?.audio;
 
       if (audioSource) {
+        console.log(word[0])
         const audio = new Audio(audioSource);
         audio.play();
       }

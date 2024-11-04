@@ -3,7 +3,7 @@ import Meaning from "./Meaning";
 
 const SearchResultBody = ({ word }: { word: SearchResult["word"] }) => {
   return (
-    <section className="space-y-8 mt-8">
+    <section className="space-y-8 mt-8" role="group">
       {word[0].meanings.map((meaning, index) => (
         <div key={index}>
           <Meaning meaning={meaning} />
