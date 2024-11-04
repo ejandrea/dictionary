@@ -1,7 +1,10 @@
 import { SearchResult as SearchResultProps } from "@/types/SearchResult";
 import NoResponse from "./NoResponse";
-import { SearchResultBody, SearchResultHead } from "./parts";
-import SearchResultFooter from "./parts/foot/SearchResultFooter";
+import {
+  SearchResultBody,
+  SearchResultFooter,
+  SearchResultHead,
+} from "./parts";
 
 const SearchResult = ({ word, error }: SearchResultProps) => {
   return word.length === 0 ? (
