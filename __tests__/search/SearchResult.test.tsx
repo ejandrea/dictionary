@@ -62,4 +62,16 @@ describe("Search Result", () => {
       }
     });
   });
+
+  it("renders the source url", () => {
+    const sourceInformationContainer =
+      screen.getByLabelText("Source information");
+
+    expect(sourceInformationContainer).toBeInTheDocument();
+    const sourceButton = screen.getByLabelText(
+      `External source: ${mockData[0].sourceUrls[0]}`
+    );
+
+    expect(sourceButton).toBeInTheDocument();
+  });
 });

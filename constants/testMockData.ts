@@ -41,5 +41,8 @@ export const mockData: Word[] = [
           antonyms: [],
         },
       ],
+      sourceUrls: [
+      "https://en.wiktionary.org/wiki/test",
+    ]
     },
   ];

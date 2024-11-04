@@ -17,4 +17,5 @@ export type Word = {
   word: string;
   phonetics: Phonetic[];
   meanings: Meaning[];
+  sourceUrls: string[];
 };
