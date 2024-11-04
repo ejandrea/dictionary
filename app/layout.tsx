@@ -1,7 +1,8 @@
+import ThemeProvider from "@/context/ThemeProvider";
 import type { Metadata } from "next";
 import { Inconsolata, Inter, Lora } from "next/font/google";
 import "./globals.css";
-import ThemeProvider from "@/context/ThemeProvider";
+import FontProvider from "@/context/FontProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,14 +15,12 @@ const lora = Lora({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-lora",
-  display: "swap",
 });
 
 const inconsolata = Inconsolata({
   subsets: ["latin"],
   variable: "--font-inconsolata",
   weight: ["400", "700"],
-  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,9 +36,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${lora.variable} ${inconsolata.variable}`}
-      >
-        <ThemeProvider>{children}</ThemeProvider>
+        className={`${inter.variable} ${lora.variable} ${inconsolata.variable}`}>
+        <ThemeProvider>
+          <FontProvider>{children}</FontProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

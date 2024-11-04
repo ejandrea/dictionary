@@ -10,7 +10,7 @@ const FontSelector = () => {
   const [isDropDownOpen, setDropDownOpen] = useState(false);
   const { font } = useFontStore();
 
-  const toggleDropDown = () => setDropDownOpen((state) => !state);
+  const toggleDropDown = () => setDropDownOpen(state => !state);
 
   return (
     <div className="relative">
@@ -19,8 +19,7 @@ const FontSelector = () => {
         onClick={toggleDropDown}
         aria-haspopup="listbox"
         aria-expanded={isDropDownOpen}
-        aria-label="Font Selector Dropdown Button"
-      >
+        aria-label="Font Selector Dropdown Button">
         <p className="font-bold text-body-sm md:text-body-md">{font.type}</p>
         <RiArrowDownSLine
           width={12}
@@ -56,9 +55,8 @@ const FontListDropDown = ({
       className={`${
         isOpen ? "inline" : "hidden"
       } absolute mt-4 right-1 rounded-2xl p-6 drop-shadow-default dark:drop-shadow-dark bg-white dark:bg-black-300 w-[183px] h-[152px] z-10`}
-      role="listbox"
-    >
-      {fonts.map((fontOption) => (
+      role="listbox">
+      {fonts.map(fontOption => (
         <FontListDropDownOption
           key={fontOption.type}
           font={fontOption}
@@ -86,12 +84,10 @@ const FontListDropDownOption = ({
   return (
     <li
       className="text-body-md font-bold [&:not(:first-child)]:mt-4"
-      role="listitem"
-    >
+      role="listitem">
       <button
         onClick={onSelect}
-        className={`font-${font.value} hover:text-accent transition-colors`}
-      >
+        className={`font-${font.value} hover:text-accent transition-colors`}>
         {font.type}
       </button>
     </li>
